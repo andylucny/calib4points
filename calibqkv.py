@@ -25,9 +25,9 @@ def softmax(v):
     return ev / np.sum(ev)
        
 def project(x,y):
-    global q, c, p
     q = (np.array([x,y],np.float32)-realavg)/realstd
-    c = softmax(q@real.T/np.sqrt(len(q)))
+    d = 0.5
+    c = softmax(q@real.T/d)
     p = c@ideal
     return tuple(np.asarray(p*idealstd+idealavg,np.int32))
 
